@@ -132,7 +132,7 @@ import axios from 'axios'
                         .then(response => {
                             console.log(response.data)
                             this.$store.commit('CLEAR_CART')
-                            this.$router.push('/')
+                            this.$router.push('/cart/checkout/success')
                         })
                         .catch(error => {
                             console.log(error)

@@ -1,5 +1,5 @@
 <template>
-    <h1>Log In</h1>
+    <h1 class="is-size-4 has-text-centered mb-4">Log In</h1>
     <div class="control">
         <form  @submit.prevent="submitForm">
             <div class="field">
@@ -57,7 +57,7 @@ export default {
                         axios.defaults.headers.common['Authorization'] = 'Token ' + token
                         localStorage.setItem('token', token)
                         //document.cookie = `token=${token}; max-age=86400`
-                        this.$router.push('/my-account')
+                        this.$router.push('/cart/checkout')
                     })
                     .catch(error => {
                         if (error.response) {

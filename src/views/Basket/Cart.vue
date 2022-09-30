@@ -13,7 +13,17 @@
            </div>
            <button class="button is-danger" @click="removeProd(item)">DELETE</button>
         </div>
-        <router-link to="/cart/checkout" class="button is-link checkout-btn">Proceed to Checkout</router-link>
+        <div v-if="this.$store.state.isAuthenticated">
+          <router-link to="/cart/checkout" class="button is-link checkout-btn">Proceed to Checkout</router-link>
+        </div>
+        <div v-else>
+            <button id="show-modal" class="button is-black" @click="showModal = true">Login to Checkout</button>
+            <modal :show="showModal" @close="showModal = false">
+                <template #body>
+                    <log-in/>
+                </template>
+            </modal>
+        </div>
     </div>
     <div v-else>
         <div class="image-container">
@@ -24,7 +34,18 @@
 </template>
 
 <script>
+import Modal from '@/components/Modal.vue'
+import LogIn from '@/components/LogIn.vue'
 export default {
+    data() {
+        return {
+            showModal: false
+        }
+    },
+    components: {
+        Modal,
+        LogIn
+    },
     mounted() {
         document.title = 'Cart'
     },

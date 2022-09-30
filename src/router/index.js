@@ -12,6 +12,7 @@ import Cart from '../views/Basket/Cart.vue'
 import UserAccount from '../views/User_Log/UserAccount'
 import Checkout from '../views/Basket/Checkout'
 import AllProducts from '../views/Products/AllProducts'
+import SuccessfullPurchase from '../views/Basket/SuccessfullPurchase'
 
 
 const routes = [
@@ -71,7 +72,12 @@ const routes = [
     meta: {
       requiredLogin: true
     }
-  }
+  },
+  {
+    path: '/cart/checkout/success',
+    name:'Success',
+    component: SuccessfullPurchase
+  },
 ]
 
 const router = createRouter({

@@ -37,8 +37,7 @@ import Orders from '@/components/Orders.vue';
         methods: {
             logout() {
                 axios.defaults.headers.common['Authorization'] = ''
-                //localStorage.removeItem('token')
-                document.cookie = `token=; max-age=0`
+                localStorage.removeItem('token')
                 localStorage.removeItem('username')
                 localStorage.removeItem('userid')
 

@@ -45,9 +45,7 @@ export default {
 <style scoped>
     .product-container{
         display: flex;
-        justify-content: center;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding: 2rem;
         gap: 100px;
     }
     .product-info{
