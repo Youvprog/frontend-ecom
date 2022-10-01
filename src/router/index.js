@@ -6,7 +6,7 @@ import HomeView from '../views/HomeView.vue'
 import ProductView from '../views/Products/ProductView.vue'
 import MangaProductsView from '../views/Products/MangaProductsView'
 import GamesProductsView from '../views/Products/GamesProductsView'
-import Login from '../views/User_Log/Login'
+import LoginPage from '../views/User_Log/LoginPage'
 import Signup from '../views/User_Log/Signup'
 import Cart from '../views/Basket/Cart.vue'
 import UserAccount from '../views/User_Log/UserAccount'
@@ -38,8 +38,8 @@ const routes = [
   },
   {
     path: '/log-in',
-    name: 'Login',
-    component: Login
+    name: 'LoginPage',
+    component: LoginPage
   },
   {
     path: '/sign-up',
@@ -87,7 +87,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiredLogin) && !store.state.isAuthenticated){
-    next({name: 'Login', query: {to:to.path}})
+    next({name: 'LoginPage', query: {to:to.path}})
   } else {
     next()
   }
