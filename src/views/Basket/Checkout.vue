@@ -53,6 +53,7 @@
                                     <input type="text" class="input" v-model="zipcode">
                                 </div>
                             </div>
+                            <div id="card-element" class="mb-5"></div>
                         </div>
                     </div>
                 </div>
@@ -70,6 +71,8 @@ import axios from 'axios'
         data() {
             return {
                 cart: [],
+                stripe: {},
+                card: {},
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -82,6 +85,14 @@ import axios from 'axios'
         mounted() {
             document.title = 'Checkout'
             this.cart = this.$store.state.cart
+
+            if(this.$store.state.cart.length > 0) {
+                this.stripe = Stripe('pk_test_51Lo1Q8DO8rz8jbK3N5v0i5LIEknLQU8WXs7Xc5ZYKvIoimjLMMGMd0eHDVHBlpmInloF1vQYtHOlFynrVmiI75Pr006g7pCH7Q')
+                const elements = this.stripe.elements();
+                this.card = elements.create('card',{ hidePostalCode: true }), 
+                this.card.mount('#card-element')
+            }
+
         },
         methods: {
             async submitedForm() {
@@ -108,8 +119,49 @@ import axios from 'axios'
                     this.errors.push('The place field is missing!')
                 }
                 if(!this.errors.length) {
-                    let items = []
-                    for (let i=0; i<this.cart.length; i++) {
+                    this.stripe.createToken(this.card).then(result => {
+                        if (result.error) {
+                            this.errors.push('Something went wrong with Stripe. Please Try again')
+                            console.log(result.error.message)
+                        } else {
+                            this.stripeTokenHandler(result.token)
+                        }
+                    })
+                    // let items = []
+                    // for (let i=0; i<this.cart.length; i++) {
+                    //     let item = this.cart[i]
+                    //     let obj = {
+                    //         product: item.prod.id,
+                    //         quantity: item.quantity
+                    //     }
+                    //     items.push(obj)
+                    // }
+                    // const data = {
+                    // 'first_name': this.first_name,
+                    // 'last_name': this.last_name,
+                    // 'email': this.email,
+                    // 'address': this.address,
+                    // 'zipcode': this.zipcode,
+                    // 'phone': this.phone,
+                    // 'total_price': this.Totalcart,
+                    // 'items': items,
+                    // }
+                    // await axios
+                    //     .post('/api/v1/checkout/', data)
+                    //     .then(response => {
+                    //         console.log(response.data)
+                    //         this.$store.commit('CLEAR_CART')
+                    //         this.$router.push('/cart/checkout/success')
+                    //     })
+                    //     .catch(error => {
+                    //         console.log(error)
+                    //     })
+
+                }
+            },
+            async stripeTokenHandler(token) {
+                const items = []
+                for (let i=0; i<this.cart.length; i++) {
                         let item = this.cart[i]
                         let obj = {
                             product: item.prod.id,
@@ -117,7 +169,7 @@ import axios from 'axios'
                         }
                         items.push(obj)
                     }
-                    const data = {
+                const data = {
                     'first_name': this.first_name,
                     'last_name': this.last_name,
                     'email': this.email,
@@ -126,8 +178,9 @@ import axios from 'axios'
                     'phone': this.phone,
                     'total_price': this.Totalcart,
                     'items': items,
-                    }
-                    await axios
+                    'stripe_token': token.id
+                }
+                await axios
                         .post('/api/v1/checkout/', data)
                         .then(response => {
                             console.log(response.data)
@@ -135,11 +188,10 @@ import axios from 'axios'
                             this.$router.push('/cart/checkout/success')
                         })
                         .catch(error => {
+                            this.errors.push('Something went wrong. Please try again')
                             console.log(error)
-                        })
-
-                }
-            },
+                        })   
+            }
 
         },
         computed: {

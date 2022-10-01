@@ -60,5 +60,9 @@ export default {
 }
 .bg-img {
   background-image: url('../assets/4334829.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
