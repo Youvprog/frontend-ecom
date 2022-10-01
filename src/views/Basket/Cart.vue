@@ -20,7 +20,7 @@
             <button id="show-modal" class="button is-black" @click="showModal = true">Login to Checkout</button>
             <modal :show="showModal" @close="showModal = false">
                 <template #body>
-                    <log-in/>
+                    <login-modal/>
                 </template>
             </modal>
         </div>
@@ -35,7 +35,7 @@
 
 <script>
 import Modal from '@/components/Modal.vue'
-import LogIn from '@/components/LogIn.vue'
+import LoginModal from '@/components/LoginModal.vue'
 export default {
     data() {
         return {
@@ -44,7 +44,7 @@ export default {
     },
     components: {
         Modal,
-        LogIn
+        LoginModal
     },
     mounted() {
         document.title = 'Cart'

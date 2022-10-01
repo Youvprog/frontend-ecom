@@ -32,7 +32,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: 'log-in',
+    name: 'login-modal',
     data() {
             return {
                 username: '',
