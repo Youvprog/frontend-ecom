@@ -16,7 +16,7 @@
             <form method="get" action="/search">
                 <div class="field has-addons">
                 <div class="control">
-                    <input type="text" class="input" placeholder="What BOY ?" name="query">
+                    <input type="text" class="input" placeholder="ZOG ZOG ?" name="query">
                 </div>
 
                 <div class="control">
