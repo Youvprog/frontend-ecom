@@ -1,30 +1,32 @@
 <template>
     <h1 class="is-size-4 has-text-centered mb-4">Log In</h1>
-    <div class="control">
-        <form  @submit.prevent="submitForm">
-            <div class="field">
-                <label>Username</label>
-                <div class="control">
-                    <input class="input" type="text" v-model="username">
+    <div class="login-container">
+        <div class="control">
+            <form  @submit.prevent="submitForm">
+                <div class="field">
+                    <label>Username</label>
+                    <div class="control">
+                        <input class="input" type="text" v-model="username">
+                    </div>
                 </div>
-            </div>
-            
-            <div class="field">
-                <label>Password</label>
-                <div class="control">
-                    <input class="input" type="password" v-model="password">
+                
+                <div class="field">
+                    <label>Password</label>
+                    <div class="control">
+                        <input class="input" type="password" v-model="password">
+                    </div>
                 </div>
-            </div>
 
-            <div class="notification is-danger" v-if="errors.length">
-                <p v-for="error in errors" :key="error"> {{error}}</p>
-            </div>
+                <div class="notification is-danger" v-if="errors.length">
+                    <p v-for="error in errors" :key="error"> {{error}}</p>
+                </div>
 
-            <button class="button is-black">Login</button>
+                <button class="button is-black">Login</button>
 
-            <hr>
-            <p>You dont have an account? <router-link to="/sign-up">click here</router-link> to create one.</p>
-        </form>
+                <hr>
+                <p>You dont have an account? <router-link to="/sign-up">click here</router-link> to create one.</p>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -76,6 +78,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 
 </style>

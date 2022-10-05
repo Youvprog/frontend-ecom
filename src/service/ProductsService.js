@@ -6,8 +6,11 @@ const apiCall = axios.create({
 });
 
 export default {
-    getProds(pathprods) {
-        return apiCall.get(`${pathprods}/`)
+    getProds(page) {
+        return apiCall.get(`products?page=${page}`)
+    },
+    getLatestProd(){
+        return apiCall.get('latest-products/')
     },
     getSingleProd(prod_slug) {
         return apiCall.get(`products/${prod_slug}/`)

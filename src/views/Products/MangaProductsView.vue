@@ -1,7 +1,7 @@
 <template>
     <div class="manga-container mb-6">
       <div class="latest-header">
-        <h2 class="is-size-2 has-text-centered">All Products</h2>
+        <h2 class="is-size-2 has-text-centered mb-4">Manga</h2>
       </div>
       <div class="manga-products-container">
         <product-card v-for="product in  manga_prods" :key="product.id" :product="product"/>
@@ -37,5 +37,6 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 </style>

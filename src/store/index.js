@@ -5,7 +5,7 @@ import { toast } from 'bulma-toast'
 export default createStore({
   state: {
     latest_products: [],
-    all_products: [],
+    all_products: {},
     manga_products: [],
     games_products: [],
     product: {},
@@ -125,21 +125,26 @@ export default createStore({
         console.log(error)
       })
     },
-    fetchProducts({commit}, Prods) {
-      ProductsService.getProds(Prods)
+    fetchProducts({commit}, page) {
+      ProductsService.getProds(page)
       .then(response =>{
-        if ( Prods === 'latest-products') {
-          commit('SET_LATEST_PRODUCTS', response.data)
-        } else if (Prods === 'products') {
-          commit('SET_PRODUCTS', response.data)
-        }
+        commit('SET_PRODUCTS', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    fetchLatestProduct({commit}) {
+      ProductsService.getLatestProd()
+      .then(response=>{
+        commit('SET_LATEST_PRODUCTS', response.data)
       })
       .catch(error => {
         console.log(error)
       })
     },
     fetchSingleProd({commit},prod_slug) {
-      const existingProd = this.state.all_products.find(product => product.slug === prod_slug)
+      const existingProd = this.state.all_products.results?.find(product => product.slug === prod_slug)
       if(existingProd) {
         commit('SET_PROD',existingProd)
       } else {

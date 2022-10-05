@@ -1,63 +1,68 @@
 <template>
-    <div class="checkout-container">
+     <div class="resume-cart">
         <h1>Checkout</h1>
         <p>Total of your cart is: {{Totalcart}}</p>
         <p>number of items you have: {{TotalCartItems}}</p>
-                <div class="column is-12 box">
-                    <h2 class="subtitle">Shipping details</h2>
+    </div>
+    <div class="checkout-container">
+        <div class="column is-12 box">
+            <h2 class="subtitle">Shipping details</h2>
 
-                    <p class="has-text-grey mb-4">* All fields are required</p>
+            <p class="has-text-grey mb-4">* All fields are required</p>
 
-                    <div class="columns is-multiline">
-                        <div class="column is-6">
-                            <div class="field">
-                                <label>First name*</label>
-                                <div class="control">
-                                    <input type="text" class="input" v-model="first_name">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label>Last name*</label>
-                                <div class="control">
-                                    <input type="text" class="input" v-model="last_name">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label>E-mail*</label>
-                                <div class="control">
-                                    <input type="email" class="input" v-model="email">
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label>Phone*</label>
-                                <div class="control">
-                                    <input type="text" class="input" v-model="phone">
-                                </div>
-                            </div>
+            <div class="columns is-multiline">
+                <div class="column is-6">
+                    <div class="field">
+                        <label>First name*</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="first_name">
                         </div>
+                    </div>
 
-                        <div class="column is-6">
-                            <div class="field">
-                                <label>Address*</label>
-                                <div class="control">
-                                    <input type="text" class="input" v-model="address">
-                                </div>
-                            </div>
+                    <div class="field">
+                        <label>Last name*</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="last_name">
+                        </div>
+                    </div>
 
-                            <div class="field">
-                                <label>Zip code*</label>
-                                <div class="control">
-                                    <input type="text" class="input" v-model="zipcode">
-                                </div>
-                            </div>
-                            <div id="card-element" class="mb-5"></div>
+                    <div class="field">
+                        <label>E-mail*</label>
+                        <div class="control">
+                            <input type="email" class="input" v-model="email">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Phone*</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="phone">
                         </div>
                     </div>
                 </div>
-                <button class="button is-dark" @click="submitedForm">Confirme</button>
+
+                <div class="column is-6">
+                    <div class="field">
+                        <label>Address*</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="address">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Zip code*</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="zipcode">
+                        </div>
+                    </div>
+                    <div id="card-element" class="field mb-5"></div>
+                </div>
+            </div>
+            <div class="notification is-danger" v-if="errors.length">
+                <p v-for="error in errors" :key="error">{{error}}</p>
+            </div>
+            <button class="button is-dark" @click="submitedForm">Confirme</button>
+        </div>         
     </div>
 </template>
 
@@ -206,6 +211,19 @@ import axios from 'axios'
 
 <style scoped>
 .checkout-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
 }
+.resume-cart {
+    display: flex;
+    flex-direction: column;
+}
+#card-element {
+    height: 30px;
+    border: 1px solid hsl(0deg, 0%, 86%);
+    border-radius: 4px;
+}
+
 </style>

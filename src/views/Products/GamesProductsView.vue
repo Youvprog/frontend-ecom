@@ -1,7 +1,7 @@
 <template>
     <div class="games-container mb-6">
       <div class="latest-header">
-        <h2 class="is-size-2 has-text-centered">All Products</h2>
+        <h2 class="is-size-2 has-text-centered mb-4">Games</h2>
       </div>
       <div class="games-products-container">
         <product-card v-for="product in games_prods" :key="product.id" :product="product"/>
@@ -37,5 +37,6 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 </style>

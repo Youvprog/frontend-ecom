@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-black">
+    <nav class="navbar is-white">
         <div class="navbar-brand">
         <router-link to="/" class="navbar-item"><strong>Geek's Store</strong></router-link>
 
@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="control">
-                    <button class="button is-link">
+                    <button class="button is-black">
                         <span class="icon">
                         <i class="fas fa-search"></i>
                         </span>
@@ -46,7 +46,7 @@
                 <router-link to="/log-in" class="button is-light">Log in</router-link>
                 </template>
 
-                <router-link to="/cart" class="button is-link">
+                <router-link to="/cart" class="button is-black">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
                 <span>Loot ({{this.$store.state.cart.length}})</span>
                 </router-link>
@@ -70,4 +70,7 @@ export default {
 </script>
 
 <style scoped>
+    .navbar{
+        box-shadow: 0 7px 7px rgb(211, 208, 208);
+    }
 </style>

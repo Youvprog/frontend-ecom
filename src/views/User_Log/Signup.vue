@@ -1,37 +1,39 @@
 <template>
-    <h1>Sign Un</h1>
-    <div class="control">
-        <form @submit.prevent="submitForm">
-            <div class="field">
-                <label>Username</label>
-                <div class="control">
-                    <input class="input" type="text" v-model="username">
+    <div class="container">
+        <h2 class="is-size-2">Sign Un</h2>
+        <div class="control">
+            <form @submit.prevent="submitForm">
+                <div class="field">
+                    <label>Username</label>
+                    <div class="control">
+                        <input class="input" type="text" v-model="username">
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <label>Password</label>
-                <div class="control">
-                    <input class="input" type="password" v-model="password1">
+                <div class="field">
+                    <label>Password</label>
+                    <div class="control">
+                        <input class="input" type="password" v-model="password1">
+                    </div>
                 </div>
-            </div>
-            
-            <div class="field">
-                <label>Repeat Password</label>
-                <div class="control">
-                    <input class="input" type="password" v-model="password2">
+                
+                <div class="field">
+                    <label>Repeat Password</label>
+                    <div class="control">
+                        <input class="input" type="password" v-model="password2">
+                    </div>
                 </div>
-            </div>
 
-            <div class="notification is-danger" v-if="errors.length">
-                <p v-for="error in errors" :key="error"> {{error}}</p>
-            </div>
+                <div class="notification is-danger" v-if="errors.length">
+                    <p v-for="error in errors" :key="error"> {{error}}</p>
+                </div>
 
-            <button class="button is-black">Sign Up</button>
+                <button class="button is-black">Sign Up</button>
 
-            <hr>
-            <p>You already have an account? <router-link to="/log-in">click here</router-link> to log in</p>
-        </form>
+                <hr>
+                <p>You already have an account? <router-link to="/log-in">click here</router-link> to log in</p>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -96,5 +98,11 @@
 </script>
 
 <style scoped>
-
+ .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
 </style>

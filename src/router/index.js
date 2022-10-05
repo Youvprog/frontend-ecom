@@ -24,7 +24,8 @@ const routes = [
   {
     path:'/products',
     name: 'Products',
-    component: AllProducts
+    component: AllProducts,
+    props: route => ({page: parseInt(route.query.page) || 1 })
   },
   {
     path: '/manga',

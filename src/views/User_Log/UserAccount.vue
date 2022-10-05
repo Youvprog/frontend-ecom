@@ -1,33 +1,37 @@
 <template>
-    <div class="user-info-container mb-6 ml-6">
-        <h1>{{username}}'s profile</h1>
-        <br/>
-        <div v-if="orders.length > 0">
-            <h1>My Orders</h1>
-            <br/>
-            <orders v-for="order in orders" 
-                    :key="order.id"
-                    :order="order"/>
+    <div class="container-user">
+        <user-dashboard :method="logout" :showOrders="showOrders" :showUser="showUser" :showDash="showDash"/>
+        <div class="dashboard" v-show="dashShow">
+            <h4 class="is-size-4 has-text-centered">Welcome to your Dashboard</h4> 
         </div>
-        <br/>
-        <button class="button is-danger" @click="logout">Log out</button>
+        <div class="orders" v-show="orderOpen">
+            <orders v-for=" order in orders" :order="order"/>
+        </div>
+        <div class="user-info" v-show="userShow">
+            <h4 class="is-size-4 has-text-centered">{{username}}'s Profile</h4>
+        </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import Orders from '@/components/Orders.vue';
+import UserDashboard from '@/components/UserDashboard.vue';
     export default{
         name: 'UserAccount',
         data() {
             return {
                 user_info: '',
                 username: '',
-                orders: []        
+                orders: [],
+                orderOpen: false,
+                userShow: false,  
+                dashShow: true,    
             }
         },
         components: {
-            Orders
+            Orders,
+            UserDashboard
         },
         mounted() {
             document.title = 'Profile'
@@ -65,12 +69,29 @@ import Orders from '@/components/Orders.vue';
                         console.log(error)
                     })
             },
+            showDash() {
+                this.dashShow = true
+                this.userShow = false
+                this.orderOpen = false
+            },
+            showOrders() {
+            this.orderOpen = true
+            this.userShow = false
+            this.dashShow = false
+            },
+            showUser() {
+                this.userShow = true
+                this.orderOpen = false
+                this.dashShow = false
+            }
         }
     }
 </script>
 
-<style scoped0>
-
-
-
+<style scoped>
+.container-user {
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 </style>

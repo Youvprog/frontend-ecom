@@ -1,6 +1,6 @@
 <template>
    <div class="home">
-    <section class="hero is-large is-dark mb-6 bg-img">
+    <div class="hero is-large is-dark mb-6 bg-img">
         <div class="hero-body has-text-centered">
             <p class="title mb-6">
                 Welcome to Geek's Store
@@ -9,7 +9,7 @@
                 Games? Manga? Pop Culture? Everything you EVER wanted, WE HAVE IT!!
             </p>
         </div>
-    </section>
+    </div>
 
     <div class="columns is-multiline prl mb-6">
       <div class="column is-12">
@@ -33,7 +33,7 @@ export default {
     ProductCard
   },
   created() {
-   this.$store.dispatch('fetchProducts', 'latest-products')
+   this.$store.dispatch('fetchLatestProduct')
   },
   mounted() {
     document.title = "Geek's Store"
@@ -54,6 +54,7 @@ export default {
 .lastprod-container{
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .prl {
   justify-content: center;

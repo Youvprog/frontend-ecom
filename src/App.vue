@@ -39,18 +39,25 @@ export default {
 
 <style lang="scss">
 @import '../node_modules/bulma';
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 #wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  min-height: 100vh;
 }
 .section {
     flex-grow: 1;
     padding: 0;
+    min-height: 100%;
   }
 .footer{
-    flex-shrink: 0;    
+    margin-top: auto;
     background-color: black;
   }
 
