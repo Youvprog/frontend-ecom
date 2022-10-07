@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="notification is-danger" v-if="errors.length">
-                    <p v-for="error in errors" :key="error"> {{error}}</p>
+                    <p v-for="error in errors" :key="error">{{error}}</p>
                 </div>
 
                 <button class="button is-black">Login</button>

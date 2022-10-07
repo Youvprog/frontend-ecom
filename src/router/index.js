@@ -70,9 +70,9 @@ const routes = [
     path:'/cart/checkout',
     name: 'Checkout',
     component: Checkout,
-    meta: {
-      requiredLogin: true
-    }
+    // meta: {
+    //   requiredLogin: true,
+    // }
   },
   {
     path: '/cart/checkout/success',
@@ -86,13 +86,10 @@ const router = createRouter({
   routes
 })
 
+
 router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiredLogin) && !store.state.isAuthenticated){
-    next({name: 'LoginPage', query: {to:to.path}})
-  } else {
-    next()
-  }
+  if(to.name === 'Checkout' && !store.state.isAuthenticated) next({ name: 'LoginPage'})
+  else if(to.name === 'Checkout' && !store.state.cart.length) next({ name: 'Cart'})
+  else next()
 })
-
-
 export default router

@@ -6,22 +6,25 @@
                 <div class="field">
                     <label>Username</label>
                     <div class="control">
-                        <input class="input" type="text" v-model="username">
+                        <input class="input" type="text" v-model="username" placeholder="username required">
                     </div>
+                    <p class="is-size-7 has-text-danger" v-if="errors.includes('The username is missing')">*Username required</p>
                 </div>
 
                 <div class="field">
                     <label>Password</label>
                     <div class="control">
-                        <input class="input" type="password" v-model="password1">
+                        <input class="input" type="password" v-model="password1" placeholder="password required">
                     </div>
+                    <p class="is-size-7 has-text-danger" v-if="errors.includes('The password is missing')">*Password required</p>
                 </div>
                 
                 <div class="field">
                     <label>Repeat Password</label>
                     <div class="control">
-                        <input class="input" type="password" v-model="password2">
+                        <input class="input" type="password" v-model="password2" placeholder="repeated password required">
                     </div>
+                    <p class="is-size-7 has-text-danger" v-if="errors.length">*Repeated Password required</p>
                 </div>
 
                 <div class="notification is-danger" v-if="errors.length">
@@ -60,7 +63,7 @@
                     this.errors.push('The password is missing')
                 }
                 if (this.password1 !== this.password2) {
-                    this.errors.push('The passwords doesnt match')
+                    this.errors.push('The passwords dont match')
                 }
                 if(!this.errors.length) {
                     const formData = {
