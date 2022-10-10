@@ -1,8 +1,8 @@
 <template>
-     <div class="resume-cart">
+     <div class="column box resume-cart">
         <h1>Checkout</h1>
-        <p>Total of your cart is: {{Totalcart}}</p>
-        <p>number of items you have: {{TotalCartItems}}</p>
+        <p>Total of your cart: ${{Totalcart}}</p>
+        <p>number of items in your cart: {{TotalCartItems}}</p>
     </div>
     <div class="checkout-container">
         <div class="column is-12 box">
@@ -217,6 +217,7 @@ import axios from 'axios'
     padding: 2rem;
 }
 .resume-cart {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
 }

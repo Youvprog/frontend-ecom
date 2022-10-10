@@ -54,8 +54,7 @@ export default {
         justify-content: center;
     }
     .product-image {
-        height: 600px;
-        width: 400px;
+        max-width: 100%;
     }
     .add-btn{
         display: flex;
@@ -63,6 +62,15 @@ export default {
     }
     .add-btn button {
         width: 350px;
+    }
+
+    @media screen and (max-width: 875px) {
+        .product-container{
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 100px;
+        }
     }
 
 </style>

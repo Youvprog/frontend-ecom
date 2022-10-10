@@ -1,23 +1,30 @@
 <template>
-    <div v-if="cart.length" class="cart-container">
-        <h2 class="is-size-2">Your Cart</h2>
-        <div class="card cart-prod" v-for="item in cart" :key="item.prod.id">
-            <img :src="item.prod.get_thumbnail">
-            <div class="prod-info-option">
-                <h4 class="is-size-6">{{item.prod.name}}</h4>
-                <p class="is-size-6"><strong>${{item.prod.price}}</strong></p>
-                <div class="btn-qte">
-                    <button class="button" @click="addQuantity(item)">+</button>
-                    <p>{{item.quantity}}</p>
-                    <button class="button" @click="reduceQuantity(item)">-</button>
+    <div v-if="cart.length">
+        <h2 class="is-size-2 has-text-centered">Your Cart</h2>
+        <div  class="cart-container">
+            <div class="card cart-prod" v-for="item in cart" :key="item.prod.id">
+                <img :src="item.prod.get_thumbnail">
+                <div class="prod-info-option">
+                    <h4 class="is-size-6">{{item.prod.name}}</h4>
+                    <p class="is-size-6"><strong>${{item.prod.price}}</strong></p>
+                    <div class="btn-qte">
+                        <button class="button" @click="addQuantity(item)">+</button>
+                        <p>{{item.quantity}}</p>
+                        <div v-if="item.quantity === 1">
+                            <button class="button" disabled>-</button>
+                        </div>
+                        <div v-else>
+                            <button class="button" @click="reduceQuantity(item)">-</button>
+                        </div>
+                    </div>
+                    <button class="button is-danger" @click="removeProd(item)">DELETE</button>
                 </div>
-                <button class="button is-danger" @click="removeProd(item)">DELETE</button>
             </div>
         </div>
-        <div v-if="this.$store.state.isAuthenticated">
-          <router-link to="/cart/checkout" class="button is-black checkout-btn">Proceed to Checkout</router-link>
+        <div class="btn-container" v-if="this.$store.state.isAuthenticated">
+            <router-link to="/cart/checkout" class="button is-black checkout-btn">Proceed to Checkout</router-link>
         </div>
-        <div v-else>
+        <div class="btn-container" v-else>
             <button id="show-modal" class="button is-black" @click="showModal = true">Login to Checkout</button>
             <modal :show="showModal" @close="showModal = false">
                 <template #body>
@@ -81,15 +88,9 @@ export default {
         padding: 2rem;
     }
     .cart-prod{
-        max-width: 45%;
-        height: 100px;
         display: flex;
         gap: 10px;
         align-items: center;
-    }
-    .cart-prod img {
-        width: 10%;
-        padding: 0.2rem;
     }
     .image-container{
         display: flex;
@@ -114,5 +115,36 @@ export default {
     .checkout-btn{
         width: 12rem;
     }
+    .btn-container {
+        padding: 2rem;
+    }
 
+    @media screen and (max-width: 690px){
+        .prod-info-option{
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            gap: 10px;
+        }
+    }
+    @media screen and (max-width: 429px) {
+        .cart-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 2rem;
+        }
+        .cart-prod{
+        display: flex;
+        flex-direction: column;
+        }
+        .prod-info-option{
+        display: flex;
+        flex-direction: column;
+        }
+        .btn-container{
+            display: flex;
+            justify-content: center;
+        }
+    }
 </style>
