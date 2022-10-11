@@ -1,10 +1,10 @@
 <template>
     <div class="games-container mb-6">
       <div class="latest-header">
-        <h2 class="is-size-2 has-text-centered mb-4">Searched: {{query}}</h2>
+        <h2 class="is-size-2 has-text-centered mb-4">Results for : {{query}}</h2>
       </div>
       <div class="games-products-container">
-        <product-card v-for="product in products" :key="product.id" :product="product"/>
+        <product-card v-for="product in products.results" :key="product.id" :product="product"/>
       </div>
     </div>
 </template>
@@ -20,7 +20,7 @@
         data() {
             return{
                 query: '',
-                products: []
+                products: {}
             }
         },
         mounted() {
@@ -34,7 +34,7 @@
         methods: {
            async searchProds() {
             await axios
-                    .post('/api/v1/products/search/', {'query': this.query})
+                    .get(`/api/v1/search/?search=${this.query}`)
                     .then(response => {
                         this.products = response.data
                     })
