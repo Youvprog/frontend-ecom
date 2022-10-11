@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="columns is-multiline prl mb-6">
+    <div class="columns is-multiline mb-6 plr">
       <div class="column is-12">
           <h2 class="is-size-2 has-text-centered">Latest products</h2>
       </div>
@@ -53,10 +53,12 @@ export default {
 }
 .lastprod-container{
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
-.prl {
+.plr {
   justify-content: center;
 }
 .bg-img {

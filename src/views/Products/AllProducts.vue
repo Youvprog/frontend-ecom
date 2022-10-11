@@ -46,7 +46,6 @@
 
 <script>
 import ProductCard from '@/components/ProductCard.vue';
-import axios from 'axios';
 import { watchEffect } from 'vue';
     export default {
         name: 'all-products',
@@ -66,8 +65,8 @@ import { watchEffect } from 'vue';
             }, 
             pageNumber() {
               return Math.ceil(this.$store.state.all_products.count / 4) 
-            }
-        },
+            },
+        }
     }
 </script>
 

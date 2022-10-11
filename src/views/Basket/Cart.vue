@@ -6,7 +6,7 @@
                 <img :src="item.prod.get_thumbnail">
                 <div class="prod-info-option">
                     <h4 class="is-size-6">{{item.prod.name}}</h4>
-                    <p class="is-size-6"><strong>${{item.prod.price}}</strong></p>
+                    <p class="is-size-6"><strong>${{item.prod.price * item.quantity}}</strong></p>
                     <div class="btn-qte">
                         <button class="button" @click="addQuantity(item)">+</button>
                         <p>{{item.quantity}}</p>
@@ -64,7 +64,7 @@ export default {
         },
         totalCart(){
             return this.$store.getters.cartTotal
-        }
+        },
     },
     methods: {
         addQuantity(item) {
@@ -118,7 +118,6 @@ export default {
     .btn-container {
         padding: 2rem;
     }
-
     @media screen and (max-width: 690px){
         .prod-info-option{
             display: flex;

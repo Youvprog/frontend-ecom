@@ -13,6 +13,7 @@ import UserAccount from '../views/User_Log/UserAccount'
 import Checkout from '../views/Basket/Checkout'
 import AllProducts from '../views/Products/AllProducts'
 import SuccessfullPurchase from '../views/Basket/SuccessfullPurchase'
+import SearchedProducts from '../views/Products/SearchedProducts'
 
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     name: 'Products',
     component: AllProducts,
     props: route => ({page: parseInt(route.query.page) || 1 })
+  },
+  {
+    path: '/search',
+    name: 'SearchedProducts',
+    component: SearchedProducts
   },
   {
     path: '/manga',
@@ -79,6 +85,7 @@ const routes = [
     name:'Success',
     component: SuccessfullPurchase
   },
+ 
 ]
 
 const router = createRouter({

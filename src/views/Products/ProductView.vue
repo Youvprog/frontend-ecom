@@ -63,7 +63,14 @@ export default {
     .add-btn button {
         width: 350px;
     }
-
+    @media screen and (max-width: 981px) {
+        .product-container {
+            gap: 20px;
+        }
+        .add-btn {
+            width: 200px;
+        }
+    }
     @media screen and (max-width: 875px) {
         .product-container{
             display: flex;
